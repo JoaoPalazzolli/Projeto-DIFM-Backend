@@ -19,8 +19,7 @@ public class AuthenticationConfig {
 
     @Autowired
     private UserRepository repository;  
-    
-    // Existe essa config pq o UserDetails n pd receber o repository 
+
     @Bean
     UserDetailsService userDetailsService(){ 
         return email -> repository.findByEmail(email)
