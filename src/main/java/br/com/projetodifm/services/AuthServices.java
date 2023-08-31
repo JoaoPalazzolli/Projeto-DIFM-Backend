@@ -252,15 +252,14 @@ public class AuthServices {
                     .build();
 
             linkRepository.save(links);
+        } else {
+            var links = linkRepository.findByURLAndUserId(token, user.getId()).orElseThrow();
+
+            links.setExpireAt(LocalDateTime.now().plusMinutes(15));
+
+            linkRepository.save(links);
         }
-
-        var links = linkRepository.findByURLAndUserId(token, user.getId()).orElseThrow();
-
-        links.setExpireAt(LocalDateTime.now().plusMinutes(15));
-
-        linkRepository.save(links);
-
-        return links.getLink();
+        return link.toString();
     }
 
 }
