@@ -23,7 +23,7 @@ public class AuthenticationConfig {
     @Bean
     UserDetailsService userDetailsService(){ 
         return email -> repository.findByEmail(email)
-                .orElseThrow(() -> new EmailNotFoundException(email));
+                .orElseThrow(() -> new EmailNotFoundException());
     }
 
     @Bean

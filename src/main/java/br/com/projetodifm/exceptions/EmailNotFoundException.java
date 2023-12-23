@@ -12,5 +12,9 @@ public class EmailNotFoundException extends UsernameNotFoundException{
     public EmailNotFoundException(String email) {
         super(String.format(ErrorMessages.EMAIL_NOT_FOUND, email));
     }
+
+    public EmailNotFoundException() {
+        super(ErrorMessages.USER_EMAIL_NOT_FOUND);
+    }
     
 }
