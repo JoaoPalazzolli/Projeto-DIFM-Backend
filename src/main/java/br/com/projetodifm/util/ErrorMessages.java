@@ -2,6 +2,7 @@ package br.com.projetodifm.util;
 
 public class ErrorMessages {
     public static final String EMAIL_NOT_FOUND = "Email [ %s ] not found!";
+    public static final String USER_EMAIL_NOT_FOUND = "Email not found!";
     public static final String USER_NOT_FOUND = "User not found!";
     public static final String INVALID_TOKEN = "Expired or invalid JWT token!";
     public static final String CONTENT_NOT_BLANK = "This Content cannot be Blank";
