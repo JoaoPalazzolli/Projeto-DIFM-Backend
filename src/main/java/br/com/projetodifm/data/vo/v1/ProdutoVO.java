@@ -1,6 +1,7 @@
 package br.com.projetodifm.data.vo.v1;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.hateoas.RepresentationModel;
 
@@ -37,4 +38,5 @@ public class ProdutoVO extends RepresentationModel<ProdutoVO> implements Seriali
     @NotNull(message = ErrorMessages.CONTENT_NOT_NULL)
     @Min(value = 1)
     private Double preco;
+    private List<UploadFileResponseVO> imageFiles;
 }
