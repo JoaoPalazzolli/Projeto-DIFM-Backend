@@ -27,6 +27,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -62,12 +64,6 @@ public class AuthServices {
     @SuppressWarnings("rawtypes")
     @Transactional
     public ResponseEntity register(RegisterRequestVO request) {
-
-        List<Permission> permissions = new ArrayList<>();
-
-        permissions.add(permissionRepository.findById(3L)
-            .orElseThrow(() -> new ResourceNotFoundException(ErrorMessages.ID_NOT_FOUND)));
-
         User user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
@@ -75,7 +71,8 @@ public class AuthServices {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .gender(request.getGender())
-                .permissions(permissions)
+                .permissions(Collections.singletonList(permissionRepository.findById(3L)
+                        .orElseThrow(() -> new ResourceNotFoundException(ErrorMessages.ID_NOT_FOUND))))
                 .accountNonExpired(true)
                 .accountNonLocked(true)
                 .credentialsNonExpired(true)
