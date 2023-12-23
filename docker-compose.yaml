@@ -2,13 +2,47 @@ version: '3.8'
 
 services:
   mysql:
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 45s
+      interval: 10s
+      retries: 5
     image: mysql:latest
     restart: always
     container_name: mysql-projetodifm
     environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: projetodifm
+      MYSQL_USER: ${DATABASE_USERNAME}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_SCHEMA}
     ports:
-      - "3307:3306"
+      - ${DATABASE_PORT}:3306
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
+    networks:
+      - project-difm-network
+
+  api:
+    depends_on:
+      mysql:
+        condition: service_healthy
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    image: project/difm:1.0
+    container_name: api-projetodifm
+    restart: on-failure
+    environment:
+      - DATABASE_URL=jdbc:mysql://mysql:${DATABASE_PORT}/${DATABASE_SCHEMA}?useTimezone=true&serverTimezone=UTC&useSSL=true
+    profiles: [ "dev" ]
+    ports:
+      - ${PORT}:8080
+    networks:
+      - project-difm-network
+
+networks:
+  project-difm-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
