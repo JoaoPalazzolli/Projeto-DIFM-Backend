@@ -39,9 +39,6 @@ public class ProdutoServices {
 
         var user = AuthenticatedUsersServices.getAuthenticatedUser();
 
-//        var user = userRepository.findByEmail(email)
-//                .orElseThrow(() -> new EmailNotFoundException(email));
-
         var produtosPage = repository.findByUserId(user.getId(), pageable)
                 .orElseThrow(() -> new ResourceNotFoundException(ErrorMessages.ID_NOT_FOUND));
 
