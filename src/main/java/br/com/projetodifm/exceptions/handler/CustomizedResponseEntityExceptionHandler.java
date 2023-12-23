@@ -24,8 +24,11 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<ExceptionsResponse> handleAllExceptions(Exception ex, WebRequest request) {
 
-        var exceptionsResponse = new ExceptionsResponse(LocalDateTime.now(), ex.getMessage(),
-                request.getDescription(false));
+        var exceptionsResponse = ExceptionsResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .message(ex.getMessage())
+                .details(request.getDescription(false))
+                .build();
 
         return new ResponseEntity<>(exceptionsResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -33,8 +36,11 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     @ExceptionHandler(ConflictException.class)
     public final ResponseEntity<ExceptionsResponse> handleConflictExceptions(Exception ex, WebRequest request) {
 
-        var exceptionsResponse = new ExceptionsResponse(LocalDateTime.now(), ex.getMessage(),
-                request.getDescription(false));
+        var exceptionsResponse = ExceptionsResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .message(ex.getMessage())
+                .details(request.getDescription(false))
+                .build();
 
         return new ResponseEntity<>(exceptionsResponse, HttpStatus.CONFLICT);
     }
@@ -42,8 +48,11 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     @ExceptionHandler(ResourceNotFoundException.class)
     public final ResponseEntity<ExceptionsResponse> handleResourceNotFoundExceptions(Exception ex, WebRequest request) {
 
-        var exceptionsResponse = new ExceptionsResponse(LocalDateTime.now(), ex.getMessage(),
-                request.getDescription(false));
+        var exceptionsResponse = ExceptionsResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .message(ex.getMessage())
+                .details(request.getDescription(false))
+                .build();
 
         return new ResponseEntity<>(exceptionsResponse, HttpStatus.NOT_FOUND);
     }
@@ -52,8 +61,11 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     public final ResponseEntity<ExceptionsResponse> handleInvalidJwtAuthenticationExceptions(Exception ex,
             WebRequest request) {
 
-        var exceptionsResponse = new ExceptionsResponse(LocalDateTime.now(), ex.getMessage(),
-                request.getDescription(false));
+        var exceptionsResponse = ExceptionsResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .message(ex.getMessage())
+                .details(request.getDescription(false))
+                .build();
 
         return new ResponseEntity<>(exceptionsResponse, HttpStatus.FORBIDDEN);
     }
@@ -69,21 +81,26 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
             String errorMessage = x.getDefaultMessage();
 
             errors.add(field + ": " + errorMessage);
-
         });
 
-        var exceptionsResponseValidation = new ExceptionsResponseValidation(LocalDateTime.now(), errors,
-                request.getDescription(false));
+        var exceptionsResponse = ExceptionsResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .messages(errors)
+                .details(request.getDescription(false))
+                .build();
 
-        return new ResponseEntity<>(exceptionsResponseValidation, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exceptionsResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(EmailNotFoundException.class)
     public final ResponseEntity<ExceptionsResponse> handleEmailNotFoundExceptions(Exception ex,
             WebRequest request) {
 
-        var exceptionsResponse = new ExceptionsResponse(LocalDateTime.now(), ex.getMessage(),
-                request.getDescription(false));
+        var exceptionsResponse = ExceptionsResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .message(ex.getMessage())
+                .details(request.getDescription(false))
+                .build();
 
         return new ResponseEntity<>(exceptionsResponse, HttpStatus.NOT_FOUND);
     }
@@ -92,28 +109,35 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     public final ResponseEntity<ExceptionsResponse> handlePermissionExceptions(Exception ex,
             WebRequest request) {
 
-        var exceptionsResponse = new ExceptionsResponse(LocalDateTime.now(), ex.getMessage(),
-                request.getDescription(false));
+        var exceptionsResponse = ExceptionsResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .message(ex.getMessage())
+                .details(request.getDescription(false))
+                .build();
 
         return new ResponseEntity<>(exceptionsResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(DisabledUserException.class)
-    public final ResponseEntity<ExceptionsResponse> handleDisabledUserExceptions(Exception ex,
-                                                                               WebRequest request) {
+    public final ResponseEntity<ExceptionsResponse> handleDisabledUserExceptions(Exception ex, WebRequest request) {
 
-        var exceptionsResponse = new ExceptionsResponse(LocalDateTime.now(), ex.getMessage(),
-                request.getDescription(false));
+        var exceptionsResponse = ExceptionsResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .message(ex.getMessage())
+                .details(request.getDescription(false))
+                .build();
 
         return new ResponseEntity<>(exceptionsResponse, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(EmailSendException.class)
-    public final ResponseEntity<ExceptionsResponse> handleEmailSendExceptions(Exception ex,
-                                                                                 WebRequest request) {
+    public final ResponseEntity<ExceptionsResponse> handleEmailSendExceptions(Exception ex, WebRequest request) {
 
-        var exceptionsResponse = new ExceptionsResponse(LocalDateTime.now(), ex.getMessage(),
-                request.getDescription(false));
+        var exceptionsResponse = ExceptionsResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .message(ex.getMessage())
+                .details(request.getDescription(false))
+                .build();
 
         return new ResponseEntity<>(exceptionsResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
