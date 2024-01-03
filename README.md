@@ -36,6 +36,15 @@ DATABASE_URL=jdbc:mysql://localhost:${DATABASE_PORT}/${DATABASE_SCHEMA}?useTimez
 MAIL_USERNAME=********                              --> EMAIL QUE FARÁ OS ENVIOS
 MAIL_PASSWORD=********                              --> SENHA DE APP DO EMAIL
 ```
+
+Por padrão os arquivos serão armazenados em ```src/main/resources/static/images/product-images```, mas caso queira trocar o local de armazenamento, coloque a variavél de ambiente abaixo no arquivo ```dev.env```, substituindo o valor que esta com **ASTERISCOS**:
+```
+# FILE (OPCIONAL)
+FILE_DIR=********                                   --> LOCAL AONDE SERÁ ARMAZENADO OS ARQUIVOS
+```
+
+Caso não queira alterar o local de armezanamento, não coloque a variavél de ambiente acima.
+
 ## Execução <a name = "execution"></a>
 
 Vamos executar a aplicação de 3 formas diferentes, escolha qual achar melhor.
