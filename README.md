@@ -53,13 +53,13 @@ Vamos executar a aplicação de 3 formas diferentes, escolha qual achar melhor.
 
 Para executarmos no docker, digite o seguinte comando no terminal ```docker-compose --profile dev --env-file dev.env up -d --build```.
 
-Após digitar o comando, um container será criado com a API, Banco de Dados e o pgAdmin, depois que a instalação estiver concluida a aplicação irá abrir automaticamente e já estará pronta para uso.
+Após digitar o comando, um container será criado com a API e o Banco de Dados, depois que a instalação estiver concluida a aplicação irá abrir automaticamente e já estará pronta para uso.
 
 ### Maven
 
 Para executar a aplicação através do Maven, primeiro precisamos abrir o banco de dados.
 
-Caso queira criar o banco utilizando um container no Docker, digite o seguinte comando no terminal ```docker-compose --env-file dev.env up -d```, após a instalação o Banco de Dados e o pgAdmin irão iniciar automaticamente.
+Caso queira criar o banco utilizando um container no Docker, digite o seguinte comando no terminal ```docker-compose --env-file dev.env up -d```, após a instalação o Banco de Dados vai iniciar automaticamente.
 
 Depois que o Banco de Dados estiver online, digite o seguinte comando ```mvn clean install```, após estar concluido digite este outro comando ```mvn spring-boot:run -Pdev```, assim que der enter a aplicação começará a ser compilada e executada.
 
@@ -67,7 +67,7 @@ Depois que o Banco de Dados estiver online, digite o seguinte comando ```mvn cle
 
 Para executar a aplicação através do .jar, primeiro precisamos abrir o banco de dados.
 
-Caso queira criar o banco utilizando um container no Docker, digite o seguinte comando no terminal ```docker-compose --env-file dev.env up -d```, após a instalação o Banco de Dados e o pgAdmin irão iniciar automaticamente.
+Caso queira criar o banco utilizando um container no Docker, digite o seguinte comando no terminal ```docker-compose --env-file dev.env up -d```, após a instalação o Banco de Dados vai iniciar automaticamente.
 
 Depois que o Banco de Dados estiver online, digite o seguinte comando ```mvn clean package```, após estar concluido digite este outro comando ```java -jar target/projetodifm-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev```, assim que der enter a aplicação começará a ser executada. 
 
