@@ -3,6 +3,7 @@
 - [Sobre](#about)
 - [Começando](#started)
 - [Execução](#execution)
+- [Documentação da API](#documentacao)
 
 ## Sobre <a name = "about"></a>
 
@@ -74,3 +75,8 @@ Depois que o Banco de Dados estiver online, digite o seguinte comando ```mvn cle
 Em todas as formas de executar, a aplicação deve mostrar a seguinte saída:
 
 ![spring_output](spring-out.png)
+
+## Documentação da API <a name = "documentacao"></a>
+
+Após a aplicação já ter sido iniciada, é possivel ver a documentação da api com o [Swagger](https://swagger.io/) entrando no link abaixo:
+ ```http://localhost:8080/swagger-ui/index.htm```
