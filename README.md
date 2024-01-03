@@ -79,4 +79,8 @@ Em todas as formas de executar, a aplicação deve mostrar a seguinte saída:
 ## Documentação da API <a name = "documentacao"></a>
 
 Após a aplicação já ter sido iniciada, é possivel ver a documentação da api com o [Swagger](https://swagger.io/) entrando no link abaixo:
- ```http://localhost:8080/swagger-ui/index.htm```
+ ```http://localhost:8080/swagger-ui/index.html```
+ 
+ obs.: A porta utilizada no link deve ser a mesma porta que a aplicação foi aberta.
+
+ Por exemplo, se a aplicação foi aberta na porta 9090, o link ficará dessa forma ```http://localhost:9090/swagger-ui/index.html```.
